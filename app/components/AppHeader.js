@@ -20,7 +20,7 @@ export default function AppHeader(props) {
         )
     })
 
-    const navbarStyle = latestScroll > 0 ? "flex justify-between items-center mx-28 h-[60px] fixed top-[-65px] left-0 right-0 z-50" : "flex justify-between items-center mx-28 h-[60px] fixed top-0 left-0 right-0 z-50"
+    const navbarStyle = latestScroll > 0 ? "flex justify-between items-center px-16 h-[60px] fixed top-0 left-0 right-0 z-50 bg-black duration-700" : "flex justify-between items-center px-16 h-[60px] fixed top-0 left-0 right-0 z-50 duration-700"
 
     return (
         <div>

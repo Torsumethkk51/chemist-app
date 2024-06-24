@@ -1,10 +1,9 @@
 'use client'
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AppHeader from "./components/AppHeader";
 import Aos from "aos";
 import "aos/dist/aos.css"
 import { TypeAnimation } from "react-type-animation";
-import Link from "next/link";
 import VideoBg from "./components/VideoBg";
 
 export default function Home() {
@@ -28,10 +27,10 @@ export default function Home() {
   return (
     <div>
       <section>
-        <AppHeader latestScroll={latestScroll} />
-        <VideoBg bgUrl={"/bgVideos/homeBg.mp4"}/>
+        <AppHeader latestScroll={latestScroll}/>
+        <VideoBg bgUrl={"/bgVideos/homeBg.mp4"} />
         <div className="h-[100vh] flex flex-col justify-center items-center text-center">
-          <div>
+          <div className="flex flex-col space-y-5">
             <TypeAnimation
               sequence={[
                 'ยินดีต้อนรับสู่ ChemistryDocs!',
@@ -42,8 +41,6 @@ export default function Home() {
               repeat={0}
               className="font-medium"
             />
-          </div>
-          <div className="mt-6">
             <TypeAnimation
               sequence={[
                 'เว็บไซต์นี้เกี่ยวกับ "วิชาเคมี"',
@@ -68,10 +65,6 @@ export default function Home() {
             <p>เว็บไซต์จัดเพื่อขึ้นเพื่อเป็นเว็บไซต์ เพื่อการศึกษาในรายวิชาเคมี เรื่องอะตอมและธาตุ</p>
             <p>และเว็บไซต์นี้เป็นส่วนหนึ่งใน โครงงานวิทยศาสตร์และเทคโนโลยี เรื่อง การจัดทำเว็บไซต์เพื่อการศึกษา</p>
             <p>ในรายวิชาเคมี เรื่องอะตอมและธาตุ ของโรงเรียนวัดนวลนรดิศ</p>
-          </div>
-          <div className="flex space-x-8 text-xl">
-            <div data-aos="fade-right"><Link className="text-lg text-white font-light w-40 h-12 flex items-center" href="/pages/about" >อ่านเพิ่มเติม</Link></div>
-            <div data-aos="fade-left"><Link className="text-lg text-white font-light w-40 h-12 flex items-center" href="/pages/lesson" >เข้าสู่เนื้อหาหลัก</Link></div>
           </div>
         </div>
       </section>
