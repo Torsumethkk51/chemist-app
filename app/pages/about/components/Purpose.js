@@ -11,11 +11,11 @@ export default function Purpose() {
             </ol>
             <div className="space-y-16">
                 <div className="space-y-8 font-light flex flex-col items-center ">
-                    <Image src="/images/website.png" width={700} height={500} className="hover:scale-[1.1] duration-300 my-6"/>
+                    <Image src="/images/website.png" width={700} height={500} className="w-auto h-auto hover:scale-[1.1] duration-300 my-6" alt="ChemistxNext website"/>
                     <p>รูปภาพที่ 1.1 เพื่อพัฒนาเว็บไซต์เพื่อการศึกษาในรายวิชา เคมี เรื่อง อะตอมและธาตุ</p>
                 </div>
                 <div className="space-y-8 font-light flex flex-col items-center">
-                    <Image src="/images/rating.png" width={700} height={500} className="hover:scale-[1.1] duration-300 my-6"/>
+                    <Image src="/images/rating.png" width={700} height={500} className="w-auto h-auto hover:scale-[1.1] duration-300 my-6" alt="website rating" priority/>
                     <p>รูปภาพที่ 2.1 เพื่อเก็บและประเมินผลความพึงพอใจของผู้เข้าใช้งานเว็บไซต์</p>
                 </div>
             </div>

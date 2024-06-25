@@ -17,7 +17,7 @@ export default function History() {
                 <div>
                 </div>
                 <div className="font-light text-center mt-6 space-y-2">
-                    <ReactPlayer url='https://youtu.be/t8x3wdXZGEY?si=30i1QUqEY5EkwqNX' />
+                    <ReactPlayer url='/videos/aboutVideo1.mp4' controls={true}/>
                     <p>ขอขอบคุณคลิปวิดีโอ What Is Chemistry? จากแชแนล Free Animated Education : </p>
                     <a href="https://youtu.be/t8x3wdXZGEY?si=tzp29oP9G1tA3T_5">https://youtu.be/t8x3wdXZGEY?si=tzp29oP9G1tA3T_5</a>
                 </div>
