@@ -9,7 +9,7 @@ export const links = [
     },
     {
         linkName : "บทเรียน",
-        linkUrl: "/pages/lesson"
+        linkUrl: "/pages/lessons"
     },
     {
         linkName : "ติดต่อ",

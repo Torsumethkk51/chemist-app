@@ -1,3 +1,4 @@
+'use client'
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { links } from "../data/app-link"
@@ -20,13 +21,13 @@ export default function AppHeader(props) {
         )
     })
 
-    const navbarStyle = latestScroll > 0 ? "flex justify-between items-center px-16 h-[60px] fixed top-0 left-0 right-0 z-50 bg-black duration-700" : "flex justify-between items-center px-16 h-[60px] fixed top-0 left-0 right-0 z-50 duration-700"
+    const navbarStyle = latestScroll > 0 ? "flex justify-between items-center px-16 h-[60px] fixed top-0 left-0 right-0 z-[9999] bg-black duration-700" : "flex justify-between items-center px-16 h-[60px] fixed top-0 left-0 right-0 z-50 duration-700"
 
     return (
-        <div>
+        <div className="w-full">
             <div className={navbarStyle} data-aos="fade-down" id="navbar">
                 <div>
-                    <h1 className="text-4xl font-medium">ChemistryDocs</h1>
+                    <h1 className="text-4xl font-medium">ChemistxNext</h1>
                 </div>
                 <div className="flex items-center">
                     {linkElement}
