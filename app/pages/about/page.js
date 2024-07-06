@@ -21,11 +21,9 @@ export default function Page() {
 
     return (
         <div>
-            <section>
-                <AppHeader latestScroll={latestScroll} />
-                <VideoBg bgUrl={"/bgVideos/aboutBg.mp4"} />
-                <Content />
-            </section>
+            <AppHeader latestScroll={latestScroll} />
+            <VideoBg bgUrl={"/bgVideos/aboutBg.mp4"} />
+            <Content />
         </div>
     )
 }

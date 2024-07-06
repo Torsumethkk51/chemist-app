@@ -3,8 +3,8 @@ export default function VideoBg(props) {
 
     return (
         <div>
-            <div className="w-full h-full fixed z-[-999]">
-                <video src={bgUrl} autoPlay loop muted />
+            <div className="w-full h-full fixed z-[-999] bg-cover">
+                <video className="w-full h-full object-cover" src={bgUrl} autoPlay loop muted />
             </div>
         </div>
     )

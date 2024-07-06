@@ -4,10 +4,10 @@ import VideoBg from "@/app/components/VideoBg";
 import { lessons } from "@/app/data/lessons-data";
 import { useEffect, useState } from "react";
 import LessonItem from "./components/lessonItem";
-import LessonDetail from "./components/lessonDetail";
 
 export default function Page() {
     const [latestScroll, setLatestScroll] = useState(0)
+    const [userSearch, setUserSearch] = useState("")
     const [lessonDetailElement, setLessonDetailElement] = useState(null)
 
     useEffect(() => {
@@ -21,26 +21,40 @@ export default function Page() {
         }
     }, [])
 
-    const openDetail = () => {
-        setLessonDetailElement(<LessonDetail setLessonDetailElement={setLessonDetailElement}/>)
-    }
-
-    const lessonElements = lessons.map((lesson) => {
-        return <LessonItem key={lesson.id} lesson={lesson} openDetail={openDetail}/>
+    const filteredLessons = lessons.filter((lesson) => {
+        return lesson.title.includes(userSearch)
     })
 
+    const lessonElements = filteredLessons.map((lesson) => {
+        return <LessonItem key={lesson.id} lesson={lesson} setLessonDetailElement={setLessonDetailElement} />
+    })
+
+    const notFoundElement = (
+        <div className="w-[1300px] h-[450px] bg-black/60 rounded-md flex justify-center items-center">
+            <p className="text-2xl">ขออภัยไม่พบเนื้อหาที่ท่านต้องการ</p>
+        </div>
+    )
+
     return (
-        <div className="pb-12">
-            <AppHeader latestScroll={latestScroll}/>
+        <div>
             <VideoBg bgUrl={"/bgVideos/lessonsBg.mp4"} />
+            <div className="pb-12 flex flex-col items-center">
+            <AppHeader latestScroll={latestScroll}/>
             <div className="flex flex-col items-center pt-16">
-                <h1 className="text-5xl font-medium">รายการเนื้อหา</h1>
-                <input type="text" placeholder="ป้อนคำเพื่อค้นหา" className="w-[400px] px-4 py-2 mt-4 text-xl bg-gray-800 border-white rounded-lg"/>
-                <div className="space-y-8 mt-20">
-                    {lessonElements}
+                <h1 className="text-[20px] font-medium">รายการเนื้อหา</h1>
+                <input 
+                    type="text" 
+                    placeholder="ป้อนคำเพื่อค้นหา" 
+                    className="w-[250px] px-4 py-[5px] mt-4 text-[12px] bg-gray-800 border-white rounded-lg"
+                    value={userSearch}
+                    onChange={(event) => {setUserSearch(event.target.value)}}
+                />
+                <div className="space-y-8 mt-[20px] w-full">
+                    {filteredLessons.length === 0 ? notFoundElement : lessonElements}
                 </div>
             </div>
             {lessonDetailElement}
+        </div>
         </div>
     )
 }

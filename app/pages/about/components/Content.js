@@ -6,9 +6,9 @@ import Technology from "./Technology";
 export default function Content() {
     return (
         <div>
-            <div className="w-[100%] h-[95%] flex relative top-[70px]">
+            <div className="w-[80%] h-[95%] flex relative top-[70px] space-x-[10px]">
                 <Sidebar />
-                <div className="w-[80%] absolute left-[25%]">
+                <div className="w-[250px] mobile-m:w-[295px] mobile-l:w-[330px] tablet:w-[600px] laptop:w-[800px] laptop-l:w-[1120px] absolute left-[25%] space-y-[10px]">
                     <History />
                     <Purpose />
                     <Technology />

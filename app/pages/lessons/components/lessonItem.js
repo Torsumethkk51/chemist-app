@@ -1,24 +1,26 @@
 'use client'
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import LessonDetail from "./lessonDetail";
 
 export default function LessonItem(props) {
-    const { lesson, openDetail } = props
+    const { lesson, setLessonDetailElement } = props
 
     return (
-        <div className="w-[1000px] flex space-x-8 bg-black/50 p-4 rounded-lg">
-            <Image src={lesson.thumbnailUrl} width={350} height={150} alt={lesson.title} priority className="rounded-lg w-auto h-auto" />
-            <div>
-                <span>หน่วยที่ {lesson.id}</span>
-                <h1 className="text-3xl font-medium">{lesson.title}</h1>
-                <p className="mt-6">{lesson.description}</p>
-                <div className="mt-12 space-x-2">
-                    <Link className="bg-none border-2 border-white px-3 py-2 hover:bg-white hover:text-gray-900 rounded-lg duration-300" href={lesson.href}>
+        <div className="w-[300px] h-[100px] flex space-x-[10px] bg-black/50 p-1 rounded-lg">
+            <Image src={lesson.thumbnailUrl} width={400} height={300} alt={lesson.title} priority className="rounded-lg w-auto h-auto" />
+            <div className="space-y-[0.5px]">
+                <span className="text-[8px]">หน่วยที่ {lesson.id}</span>
+                <h1 className="text-[9px] font-medium">{lesson.title}</h1>
+                <p className="text-[5px] mt-6 h-[18px]">{lesson.description}</p>
+                <div className="mt-12 space-x-[4px]">
+                    <Link className="bg-none border-2 border-white  px-[1px] py-[1px] text-[8px] hover:bg-white hover:text-gray-900 rounded-lg duration-300" href={lesson.href}>
                         เข้าสู่บทเรียน
                     </Link>
-                    <button className="bg-none border-2 border-white px-3 py-2 hover:bg-white hover:text-gray-900 rounded-lg duration-300" onClick={openDetail}>
-                        รายการเนื้อหา
+                    <button className="bg-none border-2 border-white px-[1px] py-[1px] text-[8px] hover:bg-white hover:text-gray-900 rounded-lg duration-300" onClick={() => {
+                        setLessonDetailElement(<LessonDetail setLessonDetailElement={setLessonDetailElement} lessonIndex={lesson.id - 1} id={lesson.id} title={lesson.title} />)
+                    }}>
+                        รายละเอียด
                     </button>
                 </div>
             </div>

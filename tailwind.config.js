@@ -14,7 +14,14 @@ module.exports = {
       },
       fontFamily: {
         "kanit" : ['Kanit', 'sans-serif']
-      }
+      },
+      screens: {
+        'mobile-m': '375px',
+        'mobile-l': '425px',
+        'tablet': '768px',
+        'laptop': '1024px',
+        'laptop-l': '1440px',
+      },
     },
   },
   plugins: [],
