@@ -41,15 +41,15 @@ export default function Page() {
             <div className="pb-12 flex flex-col items-center">
             <AppHeader latestScroll={latestScroll}/>
             <div className="flex flex-col items-center pt-16">
-                <h1 className="text-[20px] font-medium">รายการเนื้อหา</h1>
+                <h1 className="text-[20px] laptop-l:text-[35px] font-medium">รายการเนื้อหา</h1>
                 <input 
                     type="text" 
                     placeholder="ป้อนคำเพื่อค้นหา" 
-                    className="w-[250px] px-4 py-[5px] mt-4 text-[12px] bg-gray-800 border-white rounded-lg"
+                    className="w-[250px] laptop-l:w-[600px] px-4 laptop-l:px-[20px] py-[5px] laptop-l:py-[12px] mt-4 text-[12px] laptop-l:text-[18px] bg-gray-800 border-white rounded-lg"
                     value={userSearch}
                     onChange={(event) => {setUserSearch(event.target.value)}}
                 />
-                <div className="space-y-8 mt-[20px] w-full">
+                <div className="space-y-8 mt-[20px] laptop-l:mt-[45px] w-full">
                     {filteredLessons.length === 0 ? notFoundElement : lessonElements}
                 </div>
             </div>

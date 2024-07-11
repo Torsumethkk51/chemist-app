@@ -28,13 +28,13 @@ export default function Page() {
         <div>
             <AppHeader latestScroll={latestScroll}/>
             <VideoBg bgUrl={"/bgVideos/contactBg.mp4"} />
-            <div className="flex justify-center items-center space-x-8 w-full h-[100vh]">
-                {contactElements}s
+            <div className="flex flex-col laptop-l:flex-row justify-center items-center space-y-8 laptop-l:space-y-0 laptop-l:space-x-8 laptop-l:px-16 w-full h-[100vh]">
+                {contactElements}
             </div>
             <div className="h-[100vh] pt-12 flex justify-center items-center" id="website rating">
                 <RateForm />
             </div>
-            {latestScroll > 200 ? <p onClick={() => {window.scrollTo(0, 0)}} className="fixed bottom-4 right-4 bg-gray-900 px-4 py-3 rounded-lg">กลับสู่ด้านบน</p> : <a href="#website rating" className="fixed bottom-4 right-4 bg-gray-900 px-4 py-3 rounded-lg">ให้คะแนนเว็บไซต์</a>}
+            {latestScroll > 200 ? <p onClick={() => {window.scrollTo(0, 0)}} className="fixed bottom-4 right-4 bg-gray-900 px-4 py-[5px] rounded-lg text-[12px] laptop-l:text-lg">กลับสู่ด้านบน</p> : <a href="#website rating" className="fixed bottom-4 right-4 bg-gray-900 px-4 py-[5px] rounded-lg text-[12px] laptop-l:text-lg">ให้คะแนนเว็บไซต์</a>}
         </div>
     )
 }

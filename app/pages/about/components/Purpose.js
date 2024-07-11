@@ -11,12 +11,12 @@ export default function Purpose() {
             </ol>
             <div className="space-y-8">
                 <div className="space-y-0 font-light flex flex-col items-center ">
-                    <Image src="/images/website.png" width={700} height={500} className="w-auto h-auto hover:scale-[1.1] duration-300 my-6" alt="ChemistxNext website"/>
-                    <p className='text-center text-[7px] tablet:text-[12px] w-[120px] tablet:w-[200px]'>รูปภาพที่ 1.1 เพื่อพัฒนาเว็บไซต์เพื่อการศึกษาในรายวิชา เคมี เรื่อง อะตอมและธาตุ</p>
+                    <Image src="/images/website.png" width={500} height={300} className="w-auto h-auto hover:scale-[1.1] duration-300 my-6" alt="ChemistxNext website"/>
+                    <p className='text-center text-[7px] tablet:text-[12px] w-[120px] tablet:w-[200px] laptop-l:w-[300px] laptop-l:text-[18px]'>รูปภาพที่ 1.1 เพื่อพัฒนาเว็บไซต์เพื่อการศึกษาในรายวิชา เคมี เรื่อง อะตอมและธาตุ</p>
                 </div>
                 <div className="space-y-0 font-light flex flex-col items-center">
-                    <Image src="/images/rating.png" width={700} height={500} className="w-auto h-auto hover:scale-[1.1] duration-300 my-6" alt="website rating" priority/>
-                    <p className='text-center text-[7px] tablet:text-[12px] w-[120px] tablet:w-[200px]'>รูปภาพที่ 2.1 เพื่อเก็บและประเมินผลความพึงพอใจของผู้เข้าใช้งานเว็บไซต์</p>
+                    <Image src="/images/rating.png" width={500} height={300} className="w-auto h-auto hover:scale-[1.1] duration-300 my-6" alt="website rating" priority/>
+                    <p className='text-center text-[7px] tablet:text-[12px] w-[120px] tablet:w-[200px] laptop-l:w-[300px] laptop-l:text-[18px]'>รูปภาพที่ 2.1 เพื่อเก็บและประเมินผลความพึงพอใจของผู้เข้าใช้งานเว็บไซต์</p>
                 </div>
             </div>
         </div>
