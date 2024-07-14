@@ -3,10 +3,19 @@
 import React, { useState, useEffect } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+
+export const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top',
+    },
+  },
+};
 
 function Page() {
 
@@ -85,31 +94,42 @@ function Page() {
       <div className="bg-white h-[100vh]">
 
         <div className="flex justify-between items-center p-4">
-          <h1 className="text-black text-4xl font-semibold pl-12">Dashboard</h1>
+          <h1 className="text-black text-3xl font-semibold pl-12">Admin Dashboard</h1>
           <div className="flex space-x-4 items-center">
             <h1 className="text-black text-lg font-bold">{session.user.email}</h1>
             <button onClick={() => signOut( { callbackUrl: '/dashboard' } )} className="bg-red-600 text-white font-bold cursor-pointer px-6 py-2 rounded-lg hover:scale-[1.1] duration-300">Logout</button>
           </div>
           
         </div>
-        <div className="flex justify-around items-start py-16 px-[5rem]">
-          <div className="w-[25rem] h-[25rem]">
-            <Doughnut data={graph} />
+        <div className="grid place-items-center">
+          <div className="w-[35rem]">
+            <Bar options={options} data={graph} />
           </div>
+        </div>
 
-          <div className="border-gray-800 border-2 rounded-md w-[32rem] h-[28rem] overflow-y-auto">
-            <div>
-              { jsonData ? jsonData.map((item, index) => 
-                  <div key={index} className="font-bold py-2 shadow-lg border-t-2 px-8 border-gray-800">
-                      <p className="text-black text-lg">{item.firstname} {item.lastname} {item.grade}/{item.room}</p>
-                      <p className="text-black text-sm">{item.comments}</p>
-                      <p className="text-black text-md">ความพอใจ: {item.rating}</p>
-                  </div>
-
+        <div className="px-16 py-8">
+          <table className="text-black w-full">
+              <thead className="bg-gray-100 border-2 border-b-4 border-gray-300">
+                <tr>
+                  <th className="p-2 border-2 border-gray-300">Firstname</th>
+                  <th className="p-2 border-2 border-gray-300">Lastname</th>
+                  <th className="p-2 border-2 border-gray-300">Class</th>
+                  <th className="p-2 border-2 border-gray-300">Comment</th>
+                </tr>
+              </thead>
+              {
+                jsonData ? jsonData.map((item, index) => 
+                    <tbody className="text-left border border-gray-300">
+                      <tr key={index}>
+                        <td className="py-2 text-sm border border-gray-300">{item.firstname}</td>
+                        <td className="py-2 text-sm border border-gray-300">{item.lastname}</td>
+                        <td className="py-2 text-sm border border-gray-300">{item.grade}/{item.room}</td>
+                        <td className="py-2 text-sm border border-gray-300">{item.comments}</td>
+                      </tr>
+                    </tbody>
                 ) : null
               }
-            </div>
-          </div>
+            </table>
         </div>
       </div>
     )
