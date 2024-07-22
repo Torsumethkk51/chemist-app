@@ -1,6 +1,5 @@
 'use client'
 import AppHeader from "@/app/components/AppHeader";
-import VideoBg from "@/app/components/VideoBg";
 import { lessons } from "@/app/data/lessons-data";
 import { useEffect, useState } from "react";
 import LessonItem from "./components/lessonItem";
@@ -30,15 +29,15 @@ export default function Page() {
     })
 
     const notFoundElement = (
-        <div className="w-[1300px] h-[450px] bg-black/60 rounded-md flex justify-center items-center">
-            <p className="text-2xl">ขออภัยไม่พบเนื้อหาที่ท่านต้องการ</p>
+        <div className="w-[300px] h-[500px] bg-black/60 rounded-md flex justify-center items-center">
+            <p className="text-[12px]">ขออภัยไม่พบเนื้อหาที่ท่านต้องการ</p>
         </div>
     )
 
     return (
         <div>
-            <VideoBg bgUrl={"/bgVideos/lessonsBg.mp4"} />
             <div className="pb-12 flex flex-col items-center">
+            <div className="bg-[url('/bgImage/lessonBg.png')] bg-cover bg-center w-[100vw] h-[100vh] fixed z-[-999]"></div>
             <AppHeader latestScroll={latestScroll}/>
             <div className="flex flex-col items-center pt-16">
                 <h1 className="text-[20px] laptop-l:text-[35px] font-medium">รายการเนื้อหา</h1>

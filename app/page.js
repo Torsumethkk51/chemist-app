@@ -4,7 +4,6 @@ import AppHeader from "./components/AppHeader";
 import Aos from "aos";
 import "aos/dist/aos.css"
 import { TypeAnimation } from "react-type-animation";
-import VideoBg from "./components/VideoBg";
 
 export default function Home() {
   useEffect(() => {
@@ -64,9 +63,9 @@ export default function Home() {
 
   return (
     <div>
+      <div className="bg-[url('/bgImage/homeBg.png')] bg-cover bg-center w-[100vw] h-[100vh] fixed z-[-999]"></div>
       <section>
         <AppHeader latestScroll={latestScroll} />
-        <VideoBg bgUrl={"/bgVideos/homeBg-sm.mp4"} />
         <div className="h-[100vh] flex flex-col justify-center items-center text-center">
           <div className="flex flex-col space-y-5">
             {appTitle}
