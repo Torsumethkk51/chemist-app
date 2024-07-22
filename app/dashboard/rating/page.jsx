@@ -49,7 +49,7 @@ function Page() {
     if (jsonData.length > 0) {
       const counts = [0, 0, 0, 0, 0];
 
-      jsonData.forEach((item) => {
+      jsonData.forEach((item, index) => {
         switch (item.rating) {
           case 5:
             counts[0]++;
@@ -120,8 +120,8 @@ function Page() {
               </thead>
               {
                 jsonData ? jsonData.map((item, index) => 
-                    <tbody className="text-left border border-gray-300">
-                      <tr key={index}>
+                    <tbody key={index} className="text-left border border-gray-300">
+                      <tr>
                         <td className="p-2 text-sm border border-gray-300">{index + 1}</td>
                         <td className="p-2 text-sm border border-gray-300">{item.firstname}</td>
                         <td className="p-2 text-sm border border-gray-300">{item.lastname}</td>
