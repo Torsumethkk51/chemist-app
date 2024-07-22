@@ -4,7 +4,7 @@ export const lessons = [
         thumbnailUrl: '/lessonBg/1.png',
         title: 'แบบจำลองอะตอม',
         description: 'เรียนรู้เกี่ยวกับต้นกำเนิดการศึกษาอะตอม และแบบจำลองอะตอมทั้ง 5 แบบ',
-        href: '/pages/lesson/lessonPages/atomic'
+        href: '/pages/lessons/pages/atomic-model'
 
     },
     {
@@ -12,7 +12,7 @@ export const lessons = [
         thumbnailUrl: '/lessonBg/2.png',
         title: 'การจัดเรียงอิเล็กตรอนในอะตอม',
         description: 'เรียนรู้เกี่ยวกับการจัดเรียงอิเล็กตรอนในอะตอมแบบต่างๆ และหลักการกับกฎต่างๆของการจัดเรียงอิเล็กตรอนในอะตอม',
-        href: '/pages/lesson/lessonPages/atomic-configuration'
+        href: '/pages/lessons/pages/electron-config'
 
     },
     {
@@ -20,7 +20,7 @@ export const lessons = [
         thumbnailUrl: '/lessonBg/3.png',
         title: 'ตารางธาตุ',
         description: 'เรียนรู้เกี่ยวกับตารางธาตุ ส่วนประกอบของตารางธาตุ วิวัฒนาการตารางธาตุ และอื่นๆ',
-        href: '/pages/lesson/lessonPages/periodic-table'
+        href: '/pages/lessons/pages/periodic-table'
 
     },
     {
@@ -28,28 +28,28 @@ export const lessons = [
         thumbnailUrl: '/lessonBg/4.png',
         title: 'สมบัติของธาตุตามหมู่และคาบ',
         description: 'เรียนรู้เกี่ยวก้บสมบัติของธาตุตามหมู่และธาตุเช่น IE EA EN จุดเดือดจุดหลอมเหลว เป็นต้น',
-        href: '/pages/lesson/lessonPages/properties-of-elements'
+        href: '/pages/lessons/pages/element-properties'
     },
     {
         id: 5,
         thumbnailUrl: '/lessonBg/5.png',
         title: 'ธาตุทรานซิชั่น',
         description: 'เรียนรู้เกี่ยวกับสมบัติของธาตุทรานซิชั่น และสารประกอบของธาตุทรานซิชั่น',
-        href: '/pages/lesson/lessonPages/transition-elements'
+        href: '/pages/lessons/pages/transition-element'
     },
     {
         id: 6,
         thumbnailUrl: '/lessonBg/6.png',
         title: 'ธาตุกัมมันตรังสี',
         description: 'เรียนรู้เกี่ยวกับการเกิดกัมมันตภาพรังสี การสลายตัวของธาตุกัมมันตรังส ครึ่งชีวิตของธาตุกัมมันตรังสี และอื่นๆ',
-        href: '/pages/lesson/lessonPages/radioactive-elements'
+        href: '/pages/lessons/pages/radioactive-element'
     },
     {
         id: 7,
         thumbnailUrl: '/lessonBg/7.png',
         title: 'ธาตุและสารประกอบในสิ่งมีชีวิตและสิ่งแวดล้อม',
         description: 'เรียนรู้เกี่ยวกับธาตุและสารประกอบในสิ่งมีชีวิตและสิ่งแวดล้อม เช่น ธาตุ Calcium',
-        href: '/pages/lesson/lessonPages/elements-and-compounds-in-environment'
+        href: '/pages/lessons/pages/element-in-life'
     },
 ]
 
@@ -77,8 +77,7 @@ export const lessonDetails = [
         id: 3,
         details: [
             'วิวัฒนาการของตารางธาตุ',
-            'หมู่และคาบในตารางธาตุ',
-            'การจัดธาตุในตารางธาตุ'
+            'หมู่และคาบในตารางธาตุ'
         ]
     },
     {
@@ -96,7 +95,7 @@ export const lessonDetails = [
     {
         id: 5,
         details: [
-            'สมบัติของธาตุแทรนซิชัน',
+            'สมบัติของธาตุแทรนซิชันที่แตกต่างจากโลหะหมู่ IA และ IIA',
             'สารประกอบของธาตุแทรนซิชัน '
         ]
     },

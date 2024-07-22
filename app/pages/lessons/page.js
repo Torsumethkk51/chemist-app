@@ -26,7 +26,7 @@ export default function Page() {
     })
 
     const lessonElements = filteredLessons.map((lesson) => {
-        return <LessonItem key={lesson.id} lesson={lesson} setLessonDetailElement={setLessonDetailElement} />
+        return <LessonItem key={lesson.id} lesson={lesson} setLessonDetailElement={setLessonDetailElement}/>
     })
 
     const notFoundElement = (

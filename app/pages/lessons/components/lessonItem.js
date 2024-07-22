@@ -20,7 +20,7 @@ export default function LessonItem(props) {
                         เข้าสู่บทเรียน
                     </Link>
                     <button className="bg-none border-2 border-white px-[1px] laptop-l:px-[16px] py-[1px] laptop-l:py-[8px] text-[8px] laptop-l:text-[24px] hover:bg-white hover:text-gray-900 rounded-lg duration-300" onClick={() => {
-                        setLessonDetailElement(<LessonDetail setLessonDetailElement={setLessonDetailElement} lessonIndex={lesson.id - 1} id={lesson.id} title={lesson.title} />)
+                        setLessonDetailElement(<LessonDetail setLessonDetailElement={setLessonDetailElement} lessonIndex={lesson.id - 1} id={lesson.id} title={lesson.title}/>)
                     }}>
                         รายละเอียด
                     </button>
