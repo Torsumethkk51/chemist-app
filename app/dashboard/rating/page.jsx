@@ -19,9 +19,9 @@ export const options = {
 
 function Page() {
 
-  const { data: session, status } = useSession()
   const router = useRouter()
-
+  
+  const { data: session, status } = useSession()
   const [jsonData, setJsonData] = useState([]);
   const [graph, setGraph] = useState({ datasets: [] });
 
