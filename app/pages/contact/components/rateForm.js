@@ -34,17 +34,23 @@ export default function RateForm() {
         })
     }
 
-    function onFormSubmit(event) {
+    async function onFormSubmit(event) {
         event.preventDefault()
         if (rating.firstname === startRating.firstname || rating.lastname === startRating.lastname || rating.comments === startRating.comments) {
             SetFormStatusText(
-                <p className="text-xl text-red-600 text-center">ไม่สามารถส่งฟอร์มได้ โปรดกรอกข้อมูลให้ครบ</p>
+                <p className="text-red-600 text-center text-[8px] laptop-l:text-xl">ไม่สามารถส่งฟอร์มได้ โปรดกรอกข้อมูลให้ครบ</p>
             )
         }
         else {
-            console.log(rating)
+            await fetch("/api/task", {
+                method: "POST",
+                body: JSON.stringify(rating),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
             SetFormStatusText(
-                <p className="text-xl text-green-400 text-center">ฟอร์มส่งสำเร็จ ขอบคุณสำหรับการประเมิน</p>
+                <p className="text-green-400 text-center text-[8px] laptop-l:text-xl">ฟอร์มส่งสำเร็จ ขอบคุณสำหรับการประเมิน</p>
             )
             setTimeout(() => {
                 SetFormStatusText(null)
@@ -89,7 +95,7 @@ export default function RateForm() {
             <p className="text-[13px] laptop-l:text-xl mr-4">ความพึงพอใจต่อเว็บไซต์ - <span>ระดับ : {rating.rating}</span></p>
             <div className="flex justify-between items-center space-x-8 px-8">
                 <label className="text-[10px] laptop-l:text-xl w-[50px] laptop-l:w-[100px]">น้อยที่สุด</label>
-                <input type="range" name="rating" value={rating.rating} onChange={onValueChange} min="0" max="5" className="w-[61px] laptop-l:w-[400px]"/>
+                <input type="range" name="rating" value={rating.rating} onChange={onValueChange} min="1" max="5" className="w-[61px] laptop-l:w-[400px]"/>
                 <label className="text-[10px] laptop-l:text-xl w-[50px] laptop-l:w-[100px]">มากที่สุด</label>
             </div>
             <p className="text-[13px] laptop-l:text-xl">ความเห็นต่อเว็บไซต์</p>
