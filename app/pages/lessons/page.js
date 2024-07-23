@@ -37,7 +37,7 @@ export default function Page() {
 
     return (
         <div>
-            <VideoBg bgUrl={"/bgVideos/lessonsBg.mp4"} />
+            <div className="bg-[url('/bgImage/lessonBg.png')] bg-cover bg-center w-[100vw] h-[100vh] fixed z-[-999]"></div>
             <div className="pb-12 flex flex-col items-center">
             <AppHeader latestScroll={latestScroll}/>
             <div className="flex flex-col items-center pt-16">

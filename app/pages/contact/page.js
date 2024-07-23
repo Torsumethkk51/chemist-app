@@ -1,6 +1,5 @@
 'use client'
 import AppHeader from "@/app/components/AppHeader";
-import VideoBg from "@/app/components/VideoBg";
 import { members } from "@/app/data/member-data";
 import ContactItem from "./components/contactItem";
 import RateForm from "./components/rateForm";
@@ -27,7 +26,7 @@ export default function Page() {
     return (
         <div>
             <AppHeader latestScroll={latestScroll}/>
-            <VideoBg bgUrl={"/bgVideos/contactBg.mp4"} />
+            <div className="bg-[url('/bgImage/contactBg.png')] bg-cover bg-center w-[100vw] h-[100vh] fixed z-[-999]"></div>
             <div className="flex flex-col laptop-l:flex-row justify-center items-center space-y-8 laptop-l:space-y-0 laptop-l:space-x-8 laptop-l:px-16 w-full h-[100vh]">
                 {contactElements}
             </div>
