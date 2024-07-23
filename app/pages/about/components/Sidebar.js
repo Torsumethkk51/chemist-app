@@ -1,4 +1,3 @@
-import { Link } from "react-scroll";
 
 export default function Sidebar() {
     return (
@@ -7,7 +6,7 @@ export default function Sidebar() {
                 <div className="px-4">
                     <h1 className="text-[5.5px] mobile-m:text-[7px] mobile-l:text-[9px] tablet:text-[20px] laptop-l:text-[35px] font-medium">รายการหัวข้อ</h1>
                 </div>
-                <div className="px-4">
+                <div className="px-14">
                     <ol className="w-[90%] text-[4.5px] mobile-m:text-[6px] mobile-l:text-[8px] tablet:text-[16px] laptop-l:text-[24px] h-auto space-y-[-10px] tablet:space-y-2 pt-3 text-xl flex flex-col items-start list-decimal">
                         <li><a href="#history">ความเป็นมา</a></li>
                         <li><a href="#purpose">จุดประสงค์</a></li>

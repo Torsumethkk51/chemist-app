@@ -1,6 +1,7 @@
 'use client'
 import AppHeader from "@/app/components/AppHeader";
 import LessonPrevious from "@/app/components/lessonPrevious";
+import VideoBg from "@/app/components/VideoBg";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -21,7 +22,7 @@ export default function Page() {
 
     return (
         <div>
-            <div className="bg-[url('/bgImage/lessonBg.png')] bg-cover bg-center w-[100vw] h-[100vh] fixed z-[-999]"></div>
+            <VideoBg bgUrl={"/bgVideos/lessonsBg.mp4"} />
             <AppHeader latestScroll={latestScroll} />
             <div className="pt-[60px]">
 

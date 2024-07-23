@@ -34,14 +34,17 @@ export default function RateForm() {
         })
     }
 
+    const [isDisabled, setDisabled] = useState(false)
+
     async function onFormSubmit(event) {
         event.preventDefault()
         if (rating.firstname === startRating.firstname || rating.lastname === startRating.lastname || rating.comments === startRating.comments) {
             SetFormStatusText(
-                <p className="text-red-600 text-center text-[8px] laptop-l:text-xl">ไม่สามารถส่งฟอร์มได้ โปรดกรอกข้อมูลให้ครบ</p>
+                <p className="text-xl text-red-600 text-center">ไม่สามารถส่งฟอร์มได้ โปรดกรอกข้อมูลให้ครบ</p>
             )
         }
         else {
+            setDisabled(prev => !prev)
             await fetch("/api/task", {
                 method: "POST",
                 body: JSON.stringify(rating),
@@ -50,13 +53,23 @@ export default function RateForm() {
                 }
             });
             SetFormStatusText(
-                <p className="text-green-400 text-center text-[8px] laptop-l:text-xl">ฟอร์มส่งสำเร็จ ขอบคุณสำหรับการประเมิน</p>
+                <p className="text-xl text-green-400 text-center">ฟอร์มส่งสำเร็จ ขอบคุณสำหรับการประเมิน</p>
             )
             setTimeout(() => {
+                setDisabled(prev => !prev)
                 SetFormStatusText(null)
             }, 2000)
             setRating(startRating)
         }
+    }
+
+    function resetComments() {
+        setRating((prevRating) => {
+            return {
+                ...prevRating,
+                comments : ""
+            }
+        })
     }
 
     return (
@@ -95,13 +108,15 @@ export default function RateForm() {
             <p className="text-[13px] laptop-l:text-xl mr-4">ความพึงพอใจต่อเว็บไซต์ - <span>ระดับ : {rating.rating}</span></p>
             <div className="flex justify-between items-center space-x-8 px-8">
                 <label className="text-[10px] laptop-l:text-xl w-[50px] laptop-l:w-[100px]">น้อยที่สุด</label>
-                <input type="range" name="rating" value={rating.rating} onChange={onValueChange} min="1" max="5" className="w-[61px] laptop-l:w-[400px]"/>
+                <input type="range" name="rating" value={rating.rating} onChange={onValueChange} min="0" max="5" className="w-[61px] laptop-l:w-[400px]"/>
                 <label className="text-[10px] laptop-l:text-xl w-[50px] laptop-l:w-[100px]">มากที่สุด</label>
             </div>
-            <p className="text-[13px] laptop-l:text-xl">ความเห็นต่อเว็บไซต์</p>
-            <textarea name="comments" value={rating.comments} onChange={onValueChange} className="bg-gray-800 rounded-lg px-4 py-2 w-full min-h-[45px] max-h-[45px] h-[45px] laptop-l:min-h-[60px] laptop-l:max-h-[60px] laptop-l:h-[60px] text-[12px] laptop-l:text-lg" />
+            <div className="mt-6">
+                <span className="text-[13px] laptop-l:text-xl">ความเห็นต่อเว็บไซต์</span><span className="ml-4 mr-4"> | </span><span className="mx-4" onClick={resetComments}>กดเพื่อล้างความเห็น</span>
+            </div>
+            <textarea name="comments" value={rating.comments} placeholder="ความยาวของความเห็น (จำกัด 250)" onChange={onValueChange} disabled={rating.comments.length >= 250 ? true : false} className="bg-gray-800 rounded-lg px-4 py-2 w-full min-h-[45px] max-h-[45px] h-[45px] laptop-l:min-h-[60px] laptop-l:max-h-[60px] laptop-l:h-[60px] text-[12px] laptop-l:text-lg" />
             {formStatusText}
-            <button type="submit" className="w-full bg-gray-900 py-[12px] text-[15px] rounded-lg">ส่งแบบประเมิน</button>
+            <button type="submit" disabled={isDisabled} className="w-full bg-gray-900 py-[12px] text-[15px] rounded-lg">{isDisabled ? "โปรดรอ..." : "ส่งแบบประเมิน"}</button>
         </form>
     )
 }

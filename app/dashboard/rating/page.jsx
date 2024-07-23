@@ -5,6 +5,7 @@ import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import DeleteButton from "@/app/components/DeleteButton";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -19,9 +20,9 @@ export const options = {
 
 function Page() {
 
-  const router = useRouter()
-  
   const { data: session, status } = useSession()
+  const router = useRouter()
+
   const [jsonData, setJsonData] = useState([]);
   const [graph, setGraph] = useState({ datasets: [] });
 
@@ -111,22 +112,22 @@ function Page() {
           <table className="text-black w-full">
               <thead className="bg-gray-100 border-2 border-b-4 border-gray-300">
                 <tr>
-                  <th className="p-2 border-2 border-gray-300">ID</th>
                   <th className="p-2 border-2 border-gray-300">Firstname</th>
                   <th className="p-2 border-2 border-gray-300">Lastname</th>
                   <th className="p-2 border-2 border-gray-300">Class</th>
                   <th className="p-2 border-2 border-gray-300">Comment</th>
+                  <th className="p-2 border-2 border-gray-300">Action</th>
                 </tr>
               </thead>
               {
                 jsonData ? jsonData.map((item, index) => 
                     <tbody className="text-left border border-gray-300">
                       <tr key={index}>
-                        <td className="p-2 text-sm border border-gray-300">{index + 1}</td>
-                        <td className="p-2 text-sm border border-gray-300">{item.firstname}</td>
-                        <td className="p-2 text-sm border border-gray-300">{item.lastname}</td>
-                        <td className="p-2 text-sm border border-gray-300">{item.grade}/{item.room}</td>
-                        <td className="p-2 text-sm border border-gray-300">{item.comments}</td>
+                        <td className="py-2 text-sm border border-gray-300">{item.firstname}</td>
+                        <td className="py-2 text-sm border border-gray-300">{item.lastname}</td>
+                        <td className="py-2 text-sm border border-gray-300">{item.grade}/{item.room}</td>
+                        <td className="py-2 text-sm border border-gray-300">{item.comments}</td>
+                        <DeleteButton taskId={item.id}/>
                       </tr>
                     </tbody>
                 ) : null

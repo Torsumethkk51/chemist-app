@@ -1,6 +1,8 @@
 'use client'
 import AppHeader from "@/app/components/AppHeader";
+import VideoBg from "@/app/components/VideoBg";
 import { useEffect, useState } from "react";
+import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
 
 export default function Page() {
@@ -20,7 +22,7 @@ export default function Page() {
     return (
         <div>
             <AppHeader latestScroll={latestScroll} />
-            <div className="bg-[url('/bgImage/aboutBg.png')] bg-cover bg-center w-[100vw] h-[100vh] fixed z-[-999]"></div>
+            <VideoBg bgUrl={"/bgVideos/aboutBg.mp4"} />
             <Content />
         </div>
     )
