@@ -90,6 +90,14 @@ function Page() {
     }
   }, [jsonData]);
 
+  async function onDeleteRate(paramId) {
+    const response = await fetch("/api/task/" + (paramId), {
+      method: "DELETE"
+    });
+    router.push("/dashboard/rating");
+    location.reload()
+  }
+
   return (
     status === 'authenticated' && session.user && (
       <div className="bg-white h-[100vh]">
@@ -98,9 +106,9 @@ function Page() {
           <h1 className="text-black text-3xl font-semibold pl-12">Admin Dashboard</h1>
           <div className="flex space-x-4 items-center">
             <h1 className="text-black text-lg font-bold">{session.user.email}</h1>
-            <button onClick={() => signOut( { callbackUrl: '/dashboard' } )} className="bg-red-600 text-white font-bold cursor-pointer px-6 py-2 rounded-lg hover:scale-[1.1] duration-300">Logout</button>
+            <button onClick={() => signOut({ callbackUrl: '/dashboard' })} className="bg-red-600 text-white font-bold cursor-pointer px-6 py-2 rounded-lg hover:scale-[1.1] duration-300">Logout</button>
           </div>
-          
+
         </div>
         <div className="grid place-items-center">
           <div className="w-[35rem]">
@@ -110,29 +118,33 @@ function Page() {
 
         <div className="px-16 py-8">
           <table className="text-black w-full">
-              <thead className="bg-gray-100 border-2 border-b-4 border-gray-300">
-                <tr>
-                  <th className="p-2 border-2 border-gray-300">Firstname</th>
-                  <th className="p-2 border-2 border-gray-300">Lastname</th>
-                  <th className="p-2 border-2 border-gray-300">Class</th>
-                  <th className="p-2 border-2 border-gray-300">Comment</th>
-                  <th className="p-2 border-2 border-gray-300">Action</th>
-                </tr>
-              </thead>
-              {
-                jsonData ? jsonData.map((item, index) => 
-                    <tbody className="text-left border border-gray-300">
-                      <tr key={index}>
-                        <td className="py-2 text-sm border border-gray-300">{item.firstname}</td>
-                        <td className="py-2 text-sm border border-gray-300">{item.lastname}</td>
-                        <td className="py-2 text-sm border border-gray-300">{item.grade}/{item.room}</td>
-                        <td className="py-2 text-sm border border-gray-300">{item.comments}</td>
-                        <DeleteButton taskId={item.id}/>
-                      </tr>
-                    </tbody>
-                ) : null
-              }
-            </table>
+            <thead className="bg-gray-100 border-2 border-b-4 border-gray-300">
+              <tr>
+                <th className="p-2 border-2 border-gray-300">Firstname</th>
+                <th className="p-2 border-2 border-gray-300">Lastname</th>
+                <th className="p-2 border-2 border-gray-300">Class</th>
+                <th className="p-2 border-2 border-gray-300">Comment</th>
+                <th className="p-2 border-2 border-gray-300">Action</th>
+              </tr>
+            </thead>
+            {
+              jsonData ? jsonData.map((item, index) =>
+                <tbody className="text-left border border-gray-300">
+                  <tr key={index}>
+                    <td className="py-2 text-sm border border-gray-300">{item.firstname}</td>
+                    <td className="py-2 text-sm border border-gray-300">{item.lastname}</td>
+                    <td className="py-2 text-sm border border-gray-300">{item.grade}/{item.room}</td>
+                    <td className="py-2 text-sm border border-gray-300">{item.comments}</td>
+                    <td className="py-2 text-sm border border-gray-300">
+                      <button onClick={() => {onDeleteRate(item.id)}} className="bg-red-500 rounded-md text-white p-[5px]">
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              ) : null
+            }
+          </table>
         </div>
       </div>
     )
