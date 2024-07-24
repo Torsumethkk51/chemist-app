@@ -22,6 +22,21 @@ export default function Page() {
         }
     }, [])
 
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia("(max-width: 420px)");
+        const handleMediaChange = (event) => {
+            setIsMobile(event.matches);
+        };
+        handleMediaChange(mediaQuery); // Check initial value
+        mediaQuery.addEventListener('change', handleMediaChange);
+
+        return () => {
+            mediaQuery.removeEventListener('change', handleMediaChange);
+        };
+    }, []);
+
     const [dalton, setDalton] = useState(null);
     const [thomson, setThomson] = useState(null);
     const [rutherford, setRutherford] = useState(null);
@@ -33,68 +48,63 @@ export default function Page() {
 
         const loader = new GLTFLoader();
 
-            loader.load("/dalton/dalton.gltf", (gltf) => {
-                setDalton(gltf);
-            },
-                undefined,
-                (error) => {
-                    console.error("An error happened", error);
-                    setError(error);
-                }
-            );
+        loader.load("/dalton/dalton.gltf", (gltf) => {
+            setDalton(gltf);
+        },
+            undefined,
+            (error) => {
+                console.error("An error happened", error);
+                setError(error);
+            }
+        );
 
-            loader.load("/thom/thomson.gltf", (gltf) => {
-                setThomson(gltf);
-            },
-                undefined,
-                (error) => {
-                    console.error("An error happened", error);
-                    setError(error);
-                }
-            );
+        loader.load("/thom/thomson.gltf", (gltf) => {
+            setThomson(gltf);
+        },
+            undefined,
+            (error) => {
+                console.error("An error happened", error);
+                setError(error);
+            }
+        );
 
-            loader.load("/rutf/rutherford.gltf", (gltf) => {
-                setRutherford(gltf);
-            },
-                undefined,
-                (error) => {
-                    console.error("An error happened", error);
-                    setError(error);
-                }
-            );
+        loader.load("/rutf/rutherford.gltf", (gltf) => {
+            setRutherford(gltf);
+        },
+            undefined,
+            (error) => {
+                console.error("An error happened", error);
+                setError(error);
+            }
+        );
 
-            loader.load("/bohr/bohrv.gltf", (gltf) => {
-                setBohr(gltf);
-            },
-                undefined,
-                (error) => {
-                    console.error("An error happened", error);
-                    setError(error);
-                }
-            );
+        loader.load("/bohr/bohrv.gltf", (gltf) => {
+            setBohr(gltf);
+        },
+            undefined,
+            (error) => {
+                console.error("An error happened", error);
+                setError(error);
+            }
+        );
 
-            loader.load("/fog/fog-group.gltf", (gltf) => {
-                setFog(gltf);
-            },
-                undefined,
-                (error) => {
-                    console.error("An error happened", error);
-                    setError(error);
-                }
-            );
+        loader.load("/fog/fog-group.gltf", (gltf) => {
+            setFog(gltf);
+        },
+            undefined,
+            (error) => {
+                console.error("An error happened", error);
+                setError(error);
+            }
+        );
 
     }, []);
 
-    const imageLoader = ({ src, width, quality }) => {
-        return `https://example.com/${src}?w=${width}&q=${quality || 75}`
-    }
-
     return (
         <div>
-            <div className="bg-[url('/bgImage/lessonBg.png')] bg-cover bg-center w-[100vw] h-[100vh] fixed z-[-999]"></div>
             <AppHeader latestScroll={latestScroll} />
+            <div className="bg-gradient-to-r from-slate-900 to-slate-700 w-[100vw] h-[100vh] fixed z-[-999]"></div>
             <div className="pt-[60px]">
-
                 <LessonPrevious latestScroll={latestScroll} />
 
                 <div className="h-auto flex flex-col items-center space-y-2 my-12 mt-24 laptop-l:mt-12">
@@ -102,7 +112,7 @@ export default function Page() {
                     <div className="flex flex-col items-center space-y-4">
                         <Image width={250} height={0} src="/lessonImages/democritus.jpg" alt="democritus" className=" w-[100px] laptop-l:w-auto h-auto rounded-md object-cover" />
                         <p className="text-[10px] laptop-l:text-[20px]">Democritus</p>
-                        <Link href="https://ch.pinterest.com/pin/771874823630637864/" className="text-[10px] laptop-l:text-[18px] w-[300px] text-center font-medium pb-4">ขอขอบคุณภาพจาก https://ch.pinterest.<br/>com/pin/771874823630637864/</Link>
+                        <Link href="https://ch.pinterest.com/pin/771874823630637864/" className="text-[10px] laptop-l:text-[18px] w-[300px] text-center font-medium pb-4">ขอขอบคุณภาพจาก https://ch.pinterest.<br />com/pin/771874823630637864/</Link>
                     </div>
                     <p className="text-center text-[8px] laptop-l:text-[14px] laptop-l:w-[650px] w-[200px]">"แนวคิดของดีโมเครตุส(Democritus)" ซึ่งเป็นแนวคิดที่เป็นจุดเริ่มต้นของการศึกษาอะตอม ในแนวคิดนี้ได้กล่าวว่า <br /> "อะตอม คืออนุภาคที่มีขนาดเล็กมาก และไม่สามารถแบ่งย่อยได้อีก"</p>
                 </div>
@@ -118,12 +128,16 @@ export default function Page() {
                     </div>
                     <p className="text-center text-[8px] w-[200px] laptop-l:text-[14px] laptop-l:w-[750px]">เมื่อความรู้ทางวิทยาศาสตร์มีความก้าวหน้ามากขึ้น ทำให้ "แนวคิดของดีโมเครตุส" ไม่สามารถอธิบายเหตุการณ์ต่างๆที่เกิด ขึ้นกับสสารได้ <br /> ดังนั้นใน ต้น ค.ศ ที่ 19 "จอห์น ดอลตัน" นักวิทยาศาสตร์ชาวอังกฤษได้ พัฒนาแนวคิดเกี่ยวกับอะตอมและ สรุปได้ดังนี้</p>
                     <div className="flex flex-col items-center space-y-4">
-                         <Canvas>
-                            <OrbitControls enableRotate autoRotate />
-                            <ambientLight intensity={2} />
-                            <directionalLight intensity={4} position={[-5, 5, 0]} />
-                            {dalton && dalton.scene && <primitive object={dalton.scene} scale={2} />}
-                        </Canvas>
+                        {isMobile ?
+                            <Image width={200} height={0} src="/lessonImages/dalton-model.png" alt="dalton model" className="w-[150px] h-auto rounded-md" />
+                            :
+                            <Canvas>
+                                <OrbitControls enableRotate autoRotate />
+                                <ambientLight intensity={2} />
+                                <directionalLight intensity={4} position={[-5, 5, 0]} />
+                                {dalton && dalton.scene && <primitive object={dalton.scene} scale={2} />}
+                            </Canvas>
+                        }
                         <p className="text-[10px] laptop-l:text-[20px]">แบบจำลองอะตอมของดอลตัน</p>
                     </div>
                     <ul className="text-start w-[200px] laptop-l:text-[14px] laptop-l:w-[750px] space-y-[15px] text-[8px] border-white border-[2px] p-8 bg-black/10 backdrop-blur-[15px] rounded-md">
@@ -157,12 +171,16 @@ export default function Page() {
                     </div>
                     <p className="w-[200px] text-center text-[8px] laptop-l:text-[14px] laptop-l:w-[750px]">ในระหว่างช่วงเวลาที่ทำการค้นคว้าและทดลอง ทอมสันก็ได้รู้ว่า "อนุภาคแคโทดมีประจุลบ" และเรียกอนุภาคดังกล่าวว่า "อิเล็กตรอน" แล้วก็มีนักวิทยาศาสตร์หลายคนนำ"หลอดรังสีแคโทด" มาดัดแปลงจนได้มีการพบอนุภาค "โปรตอน" นั่นคือการทดลองของ "ออยเกิน โกลด์ซไตน์" หลังจากหลายการทดลองดังกล่าวผ่านมา ทำให้ทอมสันได้ข้อมูลเกี่ยวกับอะตอมมากขึ้น และได้นำเสนอแบบจำลองอะตอมใหม่ ขึ้นมาแทนแบบจำลองอะตอมของดอลตัน และสรุปแบบจำลองอะตอม นี้ไว้ว่า</p>
                     <div className="flex flex-col items-center space-y-4">
-                        <Canvas>
-                            <OrbitControls enableRotate autoRotate />
-                            <ambientLight intensity={2} />
-                            <directionalLight intensity={4} position={[-5, 5, 0]} />
-                            {thomson && thomson.scene && <primitive object={thomson.scene} scale={3} />}
-                        </Canvas>
+                        {isMobile ?
+                            <Image width={200} height={0} src="/lessonImages/thomson-model.png" alt="thomson model" className="w-[150px] h-auto rounded-md" />
+                            :
+                            <Canvas>
+                                <OrbitControls enableRotate autoRotate />
+                                <ambientLight intensity={2} />
+                                <directionalLight intensity={4} position={[-5, 5, 0]} />
+                                {thomson && thomson.scene && <primitive object={thomson.scene} scale={3} />}
+                            </Canvas>
+                        }
                         <p className="text-[10px] laptop-l:text-[20px]">แบบจำลองอะตอมของทอมสัน</p>
                     </div>
                     <ul className="text-start w-[200px] laptop-l:text-[14px] laptop-l:w-[750px] space-y-[15px] text-[8px] border-white border-[2px] p-8 bg-black/10 backdrop-blur-[15px] rounded-md">
@@ -189,12 +207,16 @@ export default function Page() {
                     </div>
                     <p className="w-[200px] text-center text-[8px] laptop-l:text-[14px] laptop-l:w-[750px]">จากการทดลองพบว่า ส่วนใหญ่การเรืองแสงบนฉากจะอยู่ที่บริเวณด้านหลังของแผ่นทองคำ และมีบางครั้งที่เกิดการเรืองแสงบริเวณด้านข้าง และน้อยครั้งมากที่มีการเรืองแสงบริเวณด้านหน้า และหากแบบจำลองอะตอมไปตามที่ทอมสันศึกษา การเรืองแสงน่าจะมีการเบี่ยงเบนอย่างสม่ำเสมอ รัทเทอร์ฟอร์ดจึงได้เสนอแบบจำลองอะตอมขึ้นมาใหม่ และสรุปออกมาดังนี้</p>
                     <div className="flex flex-col items-center space-y-4">
-                        <Canvas>
-                            <OrbitControls enableRotate autoRotate />
-                            <ambientLight intensity={2} />
-                            <directionalLight intensity={4} position={[-5, 5, 0]} />
-                            {rutherford && rutherford.scene && <primitive object={rutherford.scene} scale={0.35} />}
-                        </Canvas>
+                        {isMobile ?
+                            <Image width={200} height={0} src="/lessonImages/rutherford-model.png" alt="rutherford model" className="w-[150px] h-auto rounded-md" />
+                            :
+                            <Canvas>
+                                <OrbitControls enableRotate autoRotate />
+                                <ambientLight intensity={2} />
+                                <directionalLight intensity={4} position={[-5, 5, 0]} />
+                                {rutherford && rutherford.scene && <primitive object={rutherford.scene} scale={0.35} />}
+                            </Canvas>
+                        }
                         <p className="text-[10px] laptop-l:text-[20px]">แบบจำลองของรัทเทอร์ฟอร์ด</p>
                     </div>
                     <ul className="text-start w-[200px] laptop-l:text-[14px] laptop-l:w-[750px] space-y-[15px] text-[8px] border-white border-[2px] p-8 bg-black/10 backdrop-blur-[15px] rounded-md">
@@ -219,12 +241,16 @@ export default function Page() {
                     </div>
                     <p className="w-[200px] text-center text-[8px] laptop-l:text-[14px] laptop-l:w-[750px]">จากนั้นการศึกษาเกี่ยวกับ เส้นสเปกตรัมของไฮโดรเจน ทำให้ เป็นการนำไปสู่ การเสนอ "แบบจำลองอะตอมของโบร์" โดยใน ค.ศ 1913 นีลส์ โบร์ นักวิทยาศาสตร์ชาวเดนมาร์ก ได้นำความรู้ด้านสเปกตรัม มาสร้างแบบจำลองอะตอมขึ้นมาใหม่ และสรุปแบบจำลองอะตอมได้ดังนี้</p>
                     <div className="flex flex-col items-center space-y-4">
-                        <Canvas>
-                            <OrbitControls enableRotate autoRotate />
-                            <ambientLight intensity={2} />
-                            <directionalLight intensity={4} position={[-5, 5, 0]} />
-                            {bohr && bohr.scene && <primitive object={bohr.scene} scale={2.5} />}
-                        </Canvas>
+                        {isMobile ?
+                            <Image width={200} height={0} src="/lessonImages/bohr-model.png" alt="bohr model" className="w-[150px] h-auto rounded-md" />
+                            :
+                            <Canvas>
+                                <OrbitControls enableRotate autoRotate />
+                                <ambientLight intensity={2} />
+                                <directionalLight intensity={4} position={[-5, 5, 0]} />
+                                {bohr && bohr.scene && <primitive object={bohr.scene} scale={2.5} />}
+                            </Canvas>
+                        }
                         <p className="text-[10px] laptop-l:text-[20px]">แบบจำลองอะตอมของโบร์</p>
                     </div>
                     <ul className="text-start w-[200px] space-y-[15px] laptop-l:text-[14px] laptop-l:w-[750px] text-[8px] border-white border-[2px] p-8 bg-black/10 backdrop-blur-[15px] rounded-md">
@@ -245,12 +271,16 @@ export default function Page() {
                     </div>
                     <p className="w-[200px] text-center text-[8px] laptop-l:text-[14px] laptop-l:w-[750px]">ต่อมา นักวิทยาศาสตร์ได้ศึกษาเกี่ยวกับพฤติกรรมของอิเล็กตรอน พบว่า อิเล็กตรอนสามารถเป็นได้ทั้งคลื่นและ อนุภาค ซึ่งการค้นพบนี้ทำให้ <br /> นักวิทยาศาสตร์เลิกศึกษา ตำแหน่งของอิเล็กตรอน แต่มาศึกษา "โอกาสหรือความเป็นไปได้ที่จะพบอิเล็กตรอนในบริเวณรอบๆ นิวเคลียส" จากการศึกษาพบว่า บริเวณที่มีโอกาสพบอิเล็กตรอนมากกว่าที่อื่น คือ บริเวณใกล้นิวเคลียส และโอกาสที่จะพบอิเล็กตรอนในระยะห่างออกไปจะค่อยๆ น้อยลงตามลำดับ หลังจากการศึกษาต่างๆ นักวิทยาศาสตร์ก็ได้นำเสนอแบบจำลองอะตอมแบบกลุ่มหมอก และสรุป "แบบจำลองอะตอมแบบกลุ่มหมอก" ออกมาดังนี้</p>
                     <div className="flex flex-col items-center space-y-4">
-                        <Canvas>
-                            <OrbitControls enableRotate autoRotate />
-                            <ambientLight intensity={2} />
-                            <directionalLight intensity={4} position={[-5, 5, 0]} />
-                            {fog && fog.scene && <primitive object={fog.scene} scale={2.5} />}
-                        </Canvas>
+                        {isMobile ?
+                            <Image width={200} height={0} src="/lessonImages/quantum-model.png" alt="quantum model" className="w-[150px] h-auto rounded-md" />
+                            :
+                            <Canvas>
+                                <OrbitControls enableRotate autoRotate />
+                                <ambientLight intensity={2} />
+                                <directionalLight intensity={4} position={[-5, 5, 0]} />
+                                {fog && fog.scene && <primitive object={fog.scene} scale={2.5} />}
+                            </Canvas>
+                        }
                         <p className="text-[10px] laptop-l:text-[20px]">แบบจำลองอะตอมแบบกลุ่มหมอก</p>
                     </div>
                     <ul className="text-start w-[200px] text-[8px] space-y-4 border-white border-[2px] p-8 bg-black/10 backdrop-blur-[15px] rounded-md laptop-l:text-[14px] laptop-l:w-[750px]">

@@ -5,7 +5,7 @@ export default function LessonPrevious(props) {
 
     return (
         <div>
-            <Link className="text-[12px] bg-gray-900 rounded-md w-[100px] py-2 text-center absolute top-[70px] right-4" href="/pages/lessons">
+            <Link className="text-[12px] bg-gray-900 rounded-md w-[100px] py-2 text-center fixed top-[70px] right-4" href="/pages/lessons">
                 {"< "} เลือกบทเรียนอื่น
             </Link>
 
