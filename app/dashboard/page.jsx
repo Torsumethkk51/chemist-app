@@ -27,10 +27,7 @@ function Page() {
 
   const loadData = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/task`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+      const response = await fetch("/api/task");
       const jsonData = await response.json();
       setJsonData(jsonData);
     } catch (error) {
