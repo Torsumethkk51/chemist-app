@@ -4,6 +4,11 @@ import bcrypt from 'bcrypt'
 
 const prisma = new PrismaClient();
 
+export async function GET() {
+    const query = await prisma.Admin.findMany();
+    return NextResponse.json(query);
+}
+
 export async function POST(request) {
     try {
         const { username, email, password } = await request.json()
