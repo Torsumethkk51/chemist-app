@@ -27,7 +27,7 @@ function Page() {
 
   const loadData = async () => {
     try {
-      const response = await fetch("/api/task/");
+      const response = await fetch("/api/task");
       const jsonData = await response.json();
       setJsonData(jsonData);
     } catch (error) {
