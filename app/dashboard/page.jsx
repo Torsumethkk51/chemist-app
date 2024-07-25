@@ -36,7 +36,7 @@ function Page() {
   };
 
   async function onDeleteRate(paramId) {
-    const response = await fetch("/api/task/" + (paramId), {
+    await fetch("/api/task/" + (paramId), {
       method: "DELETE"
     });
     location.reload()
