@@ -17,18 +17,19 @@ export const authOptions = {
 
         async authorize(credentials, req) {
           if (!credentials) return null
-          const items = await prisma.Admin.findUnique({
+          const user = await prisma.Admin.findUnique({
             where: { email: credentials.email },
           })
 
           if (
-            items &&
-            (await bcrypt.compare(credentials.password, items.password))
+            user &&
+            (await bcrypt.compare(credentials.password, user.password))
           ) {
             return {
-              id: items.id,
-              username: items.username,
-              email: items.email
+              id: user.id,
+              username: user.username,
+              email: user.email,
+              role: user.role,
             }
           } else {
             throw new Error('Invalid email or password')
@@ -41,15 +42,17 @@ export const authOptions = {
     strategy: 'jwt',
   },
   callbacks: {
-    jwt: async ({ token, items }) => {
-      if (items) {
-        token.id = items.id
+    jwt: async ({ token, user }) => {
+      if (user) {
+        token.id = user.id
+        token.role = user.role
       }
       return token
     },
     session: async ({ session, token }) => {
-      if (session.items) {
-        session.items.id = token.id
+      if (token) {
+        session.user.id = token.id
+        session.user.role = token.role
       }
       return session
     }
