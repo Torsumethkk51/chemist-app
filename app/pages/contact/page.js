@@ -24,9 +24,9 @@ export default function Page() {
     }, [])
 
     return (
-        <div >
+        <div>
             <AppHeader latestScroll={latestScroll}/>
-            <div className="bg-gradient-to-r from-slate-900 to-slate-700 w-[100vw] h-[100vh] fixed z-[-999]"></div>
+            <div className="bg-[url('/bgImage/contactBg.png')] bg-cover bg-center w-[100vw] h-[100vh] fixed z-[-999]"></div>
             <div className="flex flex-col laptop-l:flex-row justify-center items-center space-y-8 laptop-l:space-y-0 laptop-l:space-x-8 laptop-l:px-16 w-full h-[100vh]">
                 {contactElements}
             </div>

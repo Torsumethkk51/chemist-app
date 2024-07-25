@@ -64,8 +64,8 @@ export default function Home() {
   return (
     <div>
       <section>
-        <div className="bg-gradient-to-r from-slate-900 to-slate-700 w-[100vw] h-[100vh] fixed z-[-999]"></div>
         <AppHeader latestScroll={latestScroll} />
+        <div className="bg-[url('/bgImage/homeBg.png')] bg-cover bg-center w-[100vw] h-[100vh] fixed z-[-999]"></div>
         <div className="h-[100vh] flex flex-col justify-center items-center text-center">
           <div className="flex flex-col space-y-5">
             {appTitle}
