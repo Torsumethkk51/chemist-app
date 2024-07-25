@@ -40,7 +40,7 @@ export default function RateForm() {
         event.preventDefault()
         if (rating.firstname === startRating.firstname || rating.lastname === startRating.lastname || rating.comments === startRating.comments) {
             SetFormStatusText(
-                <p className="text-xl text-red-600 text-center">ไม่สามารถส่งฟอร์มได้ โปรดกรอกข้อมูลให้ครบ</p>
+                <p className="text-[12px] laptop-l:text-xl text-red-600 text-center">ไม่สามารถส่งฟอร์มได้ โปรดกรอกข้อมูลให้ครบ</p>
             )
         }
         else {
@@ -53,7 +53,7 @@ export default function RateForm() {
                 }
             });
             SetFormStatusText(
-                <p className="text-xl text-green-400 text-center">ฟอร์มส่งสำเร็จ ขอบคุณสำหรับการประเมิน</p>
+                <p className="text-[12px] laptop-l:text-xl text-green-400 text-center">ฟอร์มส่งสำเร็จ ขอบคุณสำหรับการประเมิน</p>
             )
             setTimeout(() => {
                 setDisabled(prev => !prev)
@@ -73,7 +73,7 @@ export default function RateForm() {
     }
 
     return (
-        <form onSubmit={onFormSubmit} className="bg-black/50 max-w-[300px] w-[300px] laptop-l:max-w-[800px] laptop-l:w-[800px] h-[400px] laptop-l:h-[600px] mx-auto px-[18px] laptop-l:px-[35px] space-y-[10px] laptop-l:space-y-[25px] rounded-md">
+        <form onSubmit={onFormSubmit} className="bg-black/50 max-w-[300px] w-[300px] laptop-l:max-w-[800px] laptop-l:w-[800px] h-[450px] laptop-l:h-[600px] mx-auto px-[18px] laptop-l:px-[35px] space-y-[10px] laptop-l:space-y-[25px] rounded-md">
             <p className="text-[18px] laptop-l:text-3xl font-medium text-center py-6">แบบประเมินเว็บไซต์</p>
             <div className="space-y-[8px] space-x-0 laptop-l:space-x-[18px]">
                 <label className="text-[13px] laptop-l:text-xl">ชื่อจริง : </label><input type="text" name="firstname" value={rating.firstname} onChange={onValueChange} className="w-[80%] laptop-l:w-[35%] bg-gray-800 rounded-lg px-4 py-[1px] text-[12px] laptop-l:text-lg" />
@@ -116,7 +116,7 @@ export default function RateForm() {
             </div>
             <textarea name="comments" value={rating.comments} placeholder="ความยาวของความเห็น (จำกัด 250)" onChange={onValueChange} disabled={rating.comments.length >= 250 ? true : false} className="bg-gray-800 rounded-lg px-4 py-2 w-full min-h-[45px] max-h-[45px] h-[45px] laptop-l:min-h-[60px] laptop-l:max-h-[60px] laptop-l:h-[60px] text-[12px] laptop-l:text-lg" />
             {formStatusText}
-            <button type="submit" disabled={isDisabled} className="w-full bg-gray-900 py-[12px] text-[15px] rounded-lg">{isDisabled ? "โปรดรอ..." : "ส่งแบบประเมิน"}</button>
+            <button type="submit" disabled={isDisabled} className="w-full bg-gray-900 py-[5px] laptop-l:py-4 text-[15px] rounded-lg">{isDisabled ? "โปรดรอ..." : "ส่งแบบประเมิน"}</button>
         </form>
     )
 }
