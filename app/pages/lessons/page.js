@@ -37,7 +37,7 @@ export default function Page() {
 
     return (
         <div>
-            <div className="bg-[url('/bgImage/lessonBg.png')] bg-cover bg-center w-[100vw] h-[100vh] fixed z-[-999]"></div>
+            <div className="bg-gradient-to-r from-slate-900 to-slate-700 w-[100vw] h-[100vh] fixed z-[-999]"></div>
             <div className="pb-12 flex flex-col items-center">
             <AppHeader latestScroll={latestScroll}/>
             <div className="flex flex-col items-center pt-16">

@@ -20,7 +20,7 @@ export default function Page() {
     return (
         <div>
             <AppHeader latestScroll={latestScroll} />
-            <div className="bg-[url('/bgImage/aboutBg.png')] bg-cover bg-center w-[100vw] h-[100vh] fixed z-[-999]"></div>
+            <div className="bg-gradient-to-r from-slate-900 to-slate-700 w-[100vw] h-[100vh] fixed z-[-999]"></div>
             <Content />
         </div>
     )
